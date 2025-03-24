@@ -180,7 +180,7 @@ const Modal: React.FC<ModalProps> = ({
                   <Button
                     disabled={disabled}
                     label={actionLabel}
-                    onClick={handleSubmit}
+                    onClick={handleSubmit}gi
                   />
                 </div>
               </div>
