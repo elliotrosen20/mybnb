@@ -24,8 +24,8 @@ export default function RootLayout({
       <body
         className={`${font.className}`}
       >
+        <Modal isOpen />
         <Navbar />
-        <Modal />
         {children}
       </body>
     </html>
