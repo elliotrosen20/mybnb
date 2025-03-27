@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
-import prisma from "@/app/libs/prismadb"
+import prisma from "@/app/libs/prismadb";
 
 export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
@@ -25,7 +25,9 @@ export const authOptions: AuthOptions = {
                 password: { label: 'password', type: 'password' }
             },
             async authorize(credentials) {
+                console.log("Authorize function called with credentials:", credentials);
                 if (!credentials?.email || !credentials?.password) {
+                    console.error("Error: Missing email or password");
                     throw new Error('Invalid credentials');
                 }
 
@@ -36,6 +38,7 @@ export const authOptions: AuthOptions = {
                 })
 
                 if (!user || !user?.hashedPassword) {
+                    console.error("Error: User not found");
                     throw new Error('Invalid credentials');
                 }
 
@@ -45,6 +48,7 @@ export const authOptions: AuthOptions = {
                 );
 
                 if (!isCorrectPassword) {
+                    console.error("Error: Incorrect password");
                     throw new Error('Invalid credentials');
                 }
 
@@ -53,7 +57,8 @@ export const authOptions: AuthOptions = {
         })
     ],
     pages: {
-        signIn: '/'
+        // signIn: '/',
+        error: '/auth/error',
     },
     debug: process.env.NODE_ENV == 'development',
     session: {
