@@ -39,8 +39,8 @@ const Categories = () => {
           <CategoryBox
             key={item.label}
             label={item.label}
-            descirption={item.description}
-            item={item.icon}
+            description={item.description}
+            icon={item.icon}
           />
         ))}
       </div>
