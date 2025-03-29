@@ -3,18 +3,28 @@
 import L from "leaflet";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
-import "leaflet/dist/leaflet.css"
+import "leaflet/dist/leaflet.css";
+
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png"
 
+console.log("markerIcon:", markerIcon);
+console.log("markerIcon2x:", markerIcon2x);
+console.log("markerShadow:", markerShadow);
+
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
+// L.Icon.Default.mergeOptions({
+//   iconUrl: markerIcon.src,
+//   iconRetinaUrl: markerIcon2x.src,
+//   shadowUrl: markerShadow.src
+// });
 L.Icon.Default.mergeOptions({
-  iconUrl:markerIcon.src,
-  iconRetinaUrl: markerIcon2x.src,
-  shadowUrl: markerShadow.src
-})
+  iconUrl: markerIcon,
+  iconRetinaUrl: markerIcon2x,
+  shadowUrl: markerShadow
+});
 
 interface MapProps {
   center?: number[]
@@ -34,6 +44,11 @@ const Map: React.FC<MapProps> = ({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {center && (
+        <Marker
+          position={center as L.LatLngExpression}
+        />
+      )}
     </MapContainer>
   );
 };
