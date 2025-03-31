@@ -65,6 +65,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, 'PP')} - ${format(end, 'PP')}`;
   }, [reservation]);
 
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
