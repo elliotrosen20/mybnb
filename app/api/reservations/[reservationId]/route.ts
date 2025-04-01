@@ -17,7 +17,8 @@ export async function DELETE(
     return NextResponse.error();
   }
 
-  const { reservationId } = await params;
+  const resolvedParams = await params;
+  const { reservationId } = resolvedParams;
 
   if (!reservationId || typeof reservationId !== 'string') {
     throw new Error('Invalid ID');

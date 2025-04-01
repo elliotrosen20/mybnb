@@ -18,7 +18,8 @@ export async function DELETE(
     return NextResponse.error();
   }
 
-  const { listingId } = await params;
+  const resolvedParams = await params;
+  const { listingId } = resolvedParams;
 
   if (!listingId || typeof listingId !== 'string') {
     throw new Error('Invalid ID');
