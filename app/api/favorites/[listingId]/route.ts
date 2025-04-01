@@ -9,7 +9,7 @@ interface IParams {
 
 export async function POST(
   request: Request,
-  context: { params: IParams }
+  { params }: { params: IParams }
 ) {
   const currentUser = await getCurrentUser();
 
@@ -17,7 +17,7 @@ export async function POST(
     return NextResponse.error();
   }
 
-  const { listingId } = await context.params;
+  const { listingId } = await params;
 
   if (!listingId || typeof listingId !== 'string') {
     throw new Error('Invalid ID');
