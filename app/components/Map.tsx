@@ -13,7 +13,7 @@ console.log("markerIcon:", markerIcon);
 console.log("markerIcon2x:", markerIcon2x);
 console.log("markerShadow:", markerShadow);
 
-// @ts-ignore
+// @ts-expect-error: _getIconUrl is not a documented property of L.Icon.Default
 delete L.Icon.Default.prototype._getIconUrl;
 // L.Icon.Default.mergeOptions({
 //   iconUrl: markerIcon.src,

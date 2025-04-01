@@ -35,6 +35,9 @@ export default async function getListingById(
       }
     };
   } catch (error: any) {
-    throw new Error(error);
+    if (error instanceof Error) {
+      throw new Error(error.message); // Use the error's message if it's an Error object
+    }
+    throw new Error("An unexpected error occurred"); // Fallback for non-Error types
   }
 }
