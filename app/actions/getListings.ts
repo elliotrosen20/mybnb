@@ -24,7 +24,7 @@ export default async function getListings(
       endDate,
       locationValue,
       category
-    } = params;
+    } = await params;
     
     let query: any = {}
 
